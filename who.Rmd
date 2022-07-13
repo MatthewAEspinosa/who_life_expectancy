@@ -35,8 +35,8 @@ who %>%
 ```{r stats2}
 who %>%
   group_by(region) %>%
-  summarize(min_BMI = min(bmi),
-            max_BMI = max(bmi))
+  summarize(min_life = min(life_expect),
+            max_life = max(life_expect))
 
 ```
   
@@ -51,31 +51,35 @@ ggplot(who, mapping =
 ```
 
 
-```{r water-life-exp}
+```{r time-life-exp}
 ggplot(who, mapping = 
-         aes(x = gni_capita,
-             y = une_hiv,
+         aes(x = year,
+             y = life_expect,
              color = region)) +
-  geom_point()
-
+  geom_point() +
+  facet_wrap(~region)
 
 ```
 
 ```{r life-exp-childhood-obesity}
-ggplot(who, mapping = 
+who %>%
+  filter(region == "Africa") %>%
+  ggplot(mapping = 
          aes(x = age5.19obesity,
              y = life_expect,
-             color = region)) +
+             color = year)) +
   geom_point() +
   facet_wrap(~region)
 ```
 
 
 ```{r life-exp-childhood-thin}
-ggplot(who, mapping = 
+who %>%
+  filter(region == "Africa") %>%
+  ggplot(mapping = 
          aes(x = age5.19thinness,
              y = life_expect,
-             color = region)) +
+             color = year)) +
   geom_point() +
   facet_wrap(~region)
 ```
