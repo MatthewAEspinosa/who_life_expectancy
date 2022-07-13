@@ -26,6 +26,15 @@ glimpse(who)
 summary(who)
 ```
 
+```{r select}
+who %>%
+  filter(region == "Europe") %>%
+  group_by(country) %>%
+  summarize(
+    mean_gdi = mean(gni_capita, na.rm = TRUE)) %>%
+  slice_max(mean_gdi, n = 5)
+```
+
 ```{r stats}
 who %>%
   filter(region == "Americas" & year == 2016) %>%

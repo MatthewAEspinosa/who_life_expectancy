@@ -472,6 +472,20 @@ pre code {
 ##  Max.   :94.10   Max.   :14.0591   Max.   :100.00   Max.   :14.3788  
 ##  NA&#39;s   :2198    NA&#39;s   :1286      NA&#39;s   :2540     NA&#39;s   :2306</code></pre>
 <pre class="r"><code>who %&gt;%
+  filter(region == &quot;Europe&quot;) %&gt;%
+  group_by(country) %&gt;%
+  summarize(
+    mean_gdi = mean(gni_capita, na.rm = TRUE)) %&gt;%
+  slice_max(mean_gdi, n = 5)</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   country     mean_gdi
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 Luxembourg    56181.
+## 2 Norway        51369.
+## 3 Switzerland   44119.
+## 4 Netherlands   37710 
+## 5 Denmark       36500</code></pre>
+<pre class="r"><code>who %&gt;%
   filter(region == &quot;Americas&quot; &amp; year == 2016) %&gt;%
   distinct(country)</code></pre>
 <pre><code>##                               country
