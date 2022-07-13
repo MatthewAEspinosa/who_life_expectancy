@@ -1,0 +1,71 @@
+---
+title: "cfb"
+author: "matthew"
+date: '2022-07-12'
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(dplyr)
+```
+
+
+``` {r load}
+who <- read.csv("who_life_exp.csv")
+```
+
+
+``` {r glimpe}
+glimpse(who)
+```
+
+``` {r summary}
+summary(who)
+```
+
+```{r stats}
+who %>%
+  filter(region == "Americas" & year == 2016) %>%
+  distinct(country)
+```
+
+```{r stats2}
+who %>%
+  group_by(region) %>%
+  summarize(min_BMI = min(bmi),
+            max_BMI = max(bmi))
+
+```
+  
+```{r gni-capita-life-exp}
+ggplot(who, mapping = 
+         aes(x = gni_capita,
+             y = life_expect,
+             color = region)) +
+  geom_point() +
+  facet_wrap(~region)
+
+```
+
+
+```{r water-life-exp}
+ggplot(who, mapping = 
+         aes(x = basic_water,
+             y = life_expect,
+             color = region)) +
+  geom_point() +
+  facet_wrap(~region)
+```
+
+```{r life-exp-childhood-obesity}
+ggplot(who, mapping = 
+         aes(x = age5.19obesity,
+             y = life_expect,
+             color = region)) +
+  geom_point() +
+  facet_wrap(~region)
+```
+
