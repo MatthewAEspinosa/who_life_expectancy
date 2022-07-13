@@ -1,0 +1,2 @@
+# who_life_expectancy
+This set was primarily made using GHO (Global Health Observatory) and UNESCO (United Nations Educational Scientific and Culture Organization) information. The set covers the years 2000-2016 for 183 countries, in a single CSV file. Missing data is left in place, for the user to decide how to deal with it. Source: https://www.kaggle.com/datasets/mmattson/who-national-life-expectancy
