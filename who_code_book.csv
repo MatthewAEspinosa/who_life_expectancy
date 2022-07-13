@@ -1,33 +1,33 @@
-﻿Variables,meaning,source: https://www.kaggle.com/datasets/mmattson/who-national-life-expectancy
-Country,contry name,
-Country_code,three letter country identifier,
-Region,global region of country,
-Year,year,
-life_expect,life expectancy at birth (years),
-life_exp60,Life expectancy at age 60 (years),
-adult_mortality,adult mortality rates of both sexes (probability of dying between 15 and 60 years per 1000 population,
-infant_mort,death rate up to age 1,
-age1-4mort,death rate between ages 1 and 4,
-alcohol,"alcohol, recorded per capita (15+) consumption (in litres of pur alcohol)",
-bmi,mean BMI (kg/m^2) (18+) (age-standardized estimate),
-age5-19thinness,"prevalence of thinness among children and adolescents, BMI < (median - 2 s.d.) (crude estimate) (%)",
-age5-19obesity,"Prevalence of obesity among children and adolescents, BMI > (median + 2 s.d.) (crude estimate) (%)",
-hepatitis,Hepatitis B (HepB) immunization coverage among 1-year-olds (%),
-measles,measles-containing vaccine first-dose (MCV1) immunization coverage among 1-year-olds (%),
-polio,Polio (pol3) immunization coverage among 1-year-olds (%),
-diphtheria,diphtheria tetanus toxoid and pertussis (DTP3) immunization coverage among 1-year-olds (%),
-basic_water,Population using at least basic drinking-water services,
-doctors,"medical doctors (per 10,000)",
-hospitals,"total density per 100,000 population: hospitals",
-gni_capita,gross national income per capita (PPP int. $),
-gghe-d,domestic general government health expenditure (GGHE-D) as percentage of gross domestic product (GDP),
-che_gdp,current health expenditure (CHE) as percentage of gross domestic product (GDP),
-une_pop,population (thousands),
-une_infant,"mortality rate, infant (per 1,000 live births)",
-une_life,"life expectancy at birth, total (years)",
-une_hiv,"prevalence of HIV, total (% of population ages 15-49)",
-une_gni,"GNI per capita, PPP (current international $)",
-une_poverty,Poverty headcount ratio at $1.90 a day (PPP) (% of population),
-une_edu_spend,Government expenditure on educaiton as a percentage of GDP (%),
-une_literacy,"adult literacy rate, population 15+ years, both sexes (%)",
-une_school,"mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",
+Variables	meaning	source: https://www.kaggle.com/datasets/mmattson/who-national-life-expectancy
+Country	contry name	
+Country_code	three letter country identifier	
+Region	global region of country	
+Year	year	
+life_expect	life expectancy at birth (years)	
+life_exp60	Life expectancy at age 60 (years)	
+adult_mortality	adult mortality rates of both sexes (probability of dying between 15 and 60 years per 1000 population	
+infant_mort	death rate up to age 1	
+age1-4mort	death rate between ages 1 and 4	
+alcohol	"alcohol, recorded per capita (15+) consumption (in litres of pur alcohol)"	
+bmi	mean BMI (kg/m^2) (18+) (age-standardized estimate)	
+age5-19thinness	"prevalence of thinness among children and adolescents, BMI < (median - 2 s.d.) (crude estimate) (%)"	
+age5-19obesity	"Prevalence of obesity among children and adolescents, BMI > (median + 2 s.d.) (crude estimate) (%)"	
+hepatitis	Hepatitis B (HepB) immunization coverage among 1-year-olds (%)	
+measles	measles-containing vaccine first-dose (MCV1) immunization coverage among 1-year-olds (%)	
+polio	Polio (pol3) immunization coverage among 1-year-olds (%)	
+diphtheria	diphtheria tetanus toxoid and pertussis (DTP3) immunization coverage among 1-year-olds (%)	
+basic_water	Population using at least basic drinking-water services	
+doctors	"medical doctors (per 10,000)"	
+hospitals	"total density per 100,000 population: hospitals"	
+gni_capita	gross national income per capita (PPP int. $)	
+gghe-d	domestic general government health expenditure (GGHE-D) as percentage of gross domestic product (GDP)	
+che_gdp	current health expenditure (CHE) as percentage of gross domestic product (GDP)	
+une_pop	population (thousands)	
+une_infant	"mortality rate, infant (per 1,000 live births)"	
+une_life	"life expectancy at birth, total (years)"	
+une_hiv	"prevalence of HIV, total (% of population ages 15-49)"	
+une_gni	"GNI per capita, PPP (current international $)"	
+une_poverty	Poverty headcount ratio at $1.90 a day (PPP) (% of population)	
+une_edu_spend	Government expenditure on educaiton as a percentage of GDP (%)	
+une_literacy	"adult literacy rate, population 15+ years, both sexes (%)"	
+une_school	"mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes"	

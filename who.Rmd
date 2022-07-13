@@ -53,11 +53,12 @@ ggplot(who, mapping =
 
 ```{r water-life-exp}
 ggplot(who, mapping = 
-         aes(x = basic_water,
-             y = life_expect,
+         aes(x = gni_capita,
+             y = une_hiv,
              color = region)) +
-  geom_point() +
-  facet_wrap(~region)
+  geom_point()
+
+
 ```
 
 ```{r life-exp-childhood-obesity}
@@ -69,3 +70,12 @@ ggplot(who, mapping =
   facet_wrap(~region)
 ```
 
+
+```{r life-exp-childhood-thin}
+ggplot(who, mapping = 
+         aes(x = age5.19thinness,
+             y = life_expect,
+             color = region)) +
+  geom_point() +
+  facet_wrap(~region)
+```
