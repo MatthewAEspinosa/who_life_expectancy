@@ -17,6 +17,14 @@ library(dplyr)
 who <- read.csv("who_life_exp.csv")
 ```
 
+```{r}
+ mylabels <- c("Healthy Weight", "Overweight", "Obesity")
+
+who <- who %>%
+  mutate(bmi_cat = cut(bmi, breaks = c(18, 24.9, 29.9, Inf), labels = mylabels))
+  
+```
+
 
 ``` {r glimpe}
 glimpse(who)
@@ -92,3 +100,14 @@ who %>%
   geom_point() +
   facet_wrap(~region)
 ```
+
+```{r}
+who %>%
+  ggplot(mapping = 
+         aes(x = year,
+             y = life_expect,
+             color = bmi_cat)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(~region)
+```
+
