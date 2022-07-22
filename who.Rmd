@@ -102,12 +102,25 @@ who %>%
 ```
 
 ```{r}
+who_USA <- who %>%
+  filter(region == "Americas" &
+           adult_mortality > 600)
+
 who %>%
   ggplot(mapping = 
-         aes(x = year,
-             y = life_expect,
-             color = bmi_cat)) +
-  geom_point(alpha = 0.5) +
-  facet_wrap(~region)
+         aes(x = adult_mortality,
+             y = life_expect)) +
+  geom_point(alpha = 0.3) +
+  geom_point(data = who_USA,
+             aes(x = adult_mortality,
+                 y = life_expect,
+                 color = year,
+                 shape = country))
+```
+
+```{r}
+who %>%
+  filter(country == "Haiti") %>%
+  summary()
 ```
 

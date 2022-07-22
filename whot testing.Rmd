@@ -1,0 +1,175 @@
+---
+title: "WHO Life Expectancy Data"
+author: "We R Who We R"
+date: '2022-07-13'
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(dplyr)
+library(scales)
+```
+
+
+``` {r load}
+who <- read.csv("who_life_exp.csv")
+```
+
+```{r bmi-cat}
+ mylabels <- c("Healthy Weight", "Overweight", "Obesity")
+
+who <- who %>%
+  mutate(bmi_cat = cut(bmi, breaks = c(18, 24.9, 29.9, Inf), labels = mylabels))
+  
+```
+
+```{r onlymeanvalues}
+who_mean <- who %>%
+  group_by(region, country) %>%
+  summarize(mean_life = mean(life_expect, na.rm = TRUE),
+         mean_alcohol = mean(alcohol, na.rm = TRUE),
+         mean_amortality = mean(adult_mortality, na.rm = TRUE),
+         mean_bmi = mean(bmi, na.rm = TRUE),
+         mean_water = mean(basic_water, na.rm = TRUE),
+         mean_pop = mean(une_pop, na.rm = TRUE),
+         mean_health_spend = mean(che_gdp, na.rm = TRUE)) %>%
+  arrange(desc(mean_pop))
+```
+
+```{r bmi-cat-mean}
+ mylabels <- c("Healthy Weight", "Overweight", "Obesity")
+
+who_mean <- who_mean %>%
+  mutate(bmi_cat = cut(mean_bmi, breaks = c(18, 24.9, 29.9, Inf), labels = mylabels))
+  
+```
+
+```{r bmi-plotting_usaVSworld}
+who_USA <- who %>%
+  filter(country_code == "USA") %>%
+    mutate(mean_life = mean(life_expect))
+
+who %>%
+  filter(year == 2016) %>%
+  group_by(country) %>%
+  mutate(mean_life = mean(life_expect)) %>%
+  ggplot(mapping = 
+         aes(x = bmi,
+             y = mean_life)) +
+  geom_point(alpha = 0.3) +
+  geom_point(data = who_USA,
+             aes(x = bmi,
+                 y = life_expect,
+                 color = "USA"
+))
+```
+
+
+```{r mean-allvariables}
+who_meanall <- who %>%
+  group_by(country) %>%
+  summarize(mean_life = mean(life_expect, na.rm = TRUE),
+         mean_alcohol = mean(alcohol, na.rm = TRUE),
+         mean_amortality = mean(adult_mortality, na.rm = TRUE),
+         mean_bmi = mean(bmi, na.rm = TRUE),
+         mean_water = mean(basic_water, na.rm = TRUE),
+         mean_pop = mean(une_pop, na.rm = TRUE),
+         mean_health_spend = mean(che_gdp, na.rm = TRUE),
+         across()) %>%
+  arrange(desc(mean_pop))
+```
+
+
+```{r mean-onlytop5}
+who_mean5 <- who %>%
+  group_by(region, country) %>%
+  summarize(mean_life = mean(life_expect, na.rm = TRUE),
+         mean_alcohol = mean(alcohol, na.rm = TRUE),
+         mean_amortality = mean(adult_mortality, na.rm = TRUE),
+         mean_bmi = mean(bmi, na.rm = TRUE),
+         mean_water = mean(basic_water, na.rm = TRUE),
+         mean_pop = mean(une_pop, na.rm = TRUE),
+         mean_health_spend = mean(che_gdp, na.rm = TRUE)) %>%   
+arrange(desc(mean_pop)) %>%
+  slice(1:5)
+```
+
+
+```{r region-stats}
+who_mean_regions <-  who_mean %>%  
+  filter(bmi_cat != "NA") %>%
+  group_by(region) %>%
+count(bmi_cat) %>%
+  mutate(bmi_cat_per = n/sum(n))
+
+who_mean %>%
+  filter(bmi_cat != "NA") %>%
+  group_by(region) %>%
+  count(region)
+
+who_mean %>%
+  filter(bmi_cat != "NA") %>%
+  group_by(bmi_cat)%>%
+  count(bmi_cat)
+```
+
+```{r mean-bars}
+who_mean %>%
+  filter(bmi_cat != "NA") %>%
+  group_by(region) %>%
+  ggplot(mapping = aes(
+    x = region,
+    fill = bmi_cat))  +
+    geom_bar(position = "fill")
+```
+
+```{r}
+who_USA <- who %>%
+  filter(country_code == "USA") %>%
+    summarize(mean_life = mean(life_expect),
+           mean_health_spend = mean(che_gdp),
+           country, region, bmi_cat)
+
+```
+
+``` {r mean-plots}
+who_mean %>%
+  group_by(country) %>%
+  ggplot(mapping = 
+         aes(x = mean_health_spend,
+             y = mean_life)) +
+  geom_point(alpha = 0.5) +
+  geom_point(data = who_USA,
+             aes(x = mean_health_spend,
+                 y = mean_life,
+                 color = "USA")) +
+  facet_wrap(~bmi_cat)
+  
+```
+
+```{r means-plot}
+who_mean %>%
+    filter(mean_pop < 350000) %>%
+  group_by(country) %>%
+  ggplot(mapping = 
+         aes(x = mean_pop,
+             y = mean_life,
+             color = bmi_cat)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE) 
+```
+
+```{r ind-plots}
+who %>%
+  filter(une_pop < 350000) %>%
+  group_by(country) %>%
+  ggplot(mapping = 
+         aes(x = une_pop,
+             y = bmi)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE) 
+```
+
