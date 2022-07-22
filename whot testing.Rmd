@@ -35,9 +35,19 @@ who_mean <- who %>%
          mean_bmi = mean(bmi, na.rm = TRUE),
          mean_water = mean(basic_water, na.rm = TRUE),
          mean_pop = mean(une_pop, na.rm = TRUE),
-         mean_health_spend = mean(che_gdp, na.rm = TRUE)) %>%
+         mean_health_spend = mean(che_gdp, na.rm = TRUE),
+         mean_life60 = mean(life_exp60, na.rm = TRUE),
+         mean_imort = mean(infant_mort, na.rm = TRUE),
+         mean_edu = mean(une_edu_spend, na.rm = TRUE),
+         mean_school = mean(une_school, na.rm = TRUE),
+         mean_gni = mean(gni_capita, na.rm = TRUE)) %>%
   arrange(desc(mean_pop))
 ```
+
+```{r}
+write.csv(who_mean)
+```
+
 
 ```{r bmi-cat-mean}
  mylabels <- c("Healthy Weight", "Overweight", "Obesity")
